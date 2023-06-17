@@ -13,9 +13,21 @@
 <nav class="navbar bg-body-tertiary" style="height: 10vh">
   <div class="container-fluid">
     <a class="navbar-brand" href="<?php global $router; echo $router->generate('main-home'); ?>"><img src="/images/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"></a></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+
+    <div class="d-flex justify-content-end col-6">
+
+    <div class="">
+        <?php if ($_SESSION): ?>
+          <a class="btn btn-danger" href="<?php global $router; echo $router->generate('user-logout'); ?>" type="button">Déconnexion</a>
+        <?php else: ?>
+          <a class="btn btn-success" href="<?php global $router; echo $router->generate('user-login'); ?>" type="button">Connexion</a>
+        <?php endif; ?>
+      </div>
+
+    <button class="navbar-toggler ms-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title fs-3" id="offcanvasNavbarLabel">Votre ToDoList</h5>
@@ -27,13 +39,14 @@
             <a class="nav-link fs-3" aria-current="page" href="<?php global $router; echo $router->generate('main-home'); ?>">Acceuil 🏠</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-3" href="<?php global $router; echo $router->generate('tasks-list'); ?>">Prendre une nouvelle note ✍️</a>
+            <a class="nav-link fs-3" href="<?php global $router; if (!$_SESSION): echo $router->generate('user-login'); else: echo $router->generate('tasks-list', ["userId" => $_SESSION["auth"]]); endif; ?>">Prendre une nouvelle note ✍️</a>
           </li>
           <li class="nav-item">
             <a class="nav-link fs-3" href="<?php global $router; echo $router->generate('main-price'); ?>">Prix 💰</a>
           </li>
         </ul>
       </div>
+    </div>
     </div>
   </div>
 </nav>

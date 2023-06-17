@@ -4,15 +4,10 @@
 
         <h3 class="mb-5">Création d'une nouvelle catégorie</h3>
 
-        <form>
+        <form method="POST">
             <div class="mb-3">
                 <label for="category" class="form-label">Nom de la catégorie</label>
-                <input type="text" class="form-control" id="category" name="category" aria-describedby="categoryName">
-            </div>
-
-            <div class="mb-3">
-                <label for="categoryDescription" class="form-label">Décrivez votre catégorie</label>
-                <input type="text" class="form-control" id="categoryDescription" name="categoryDescription">
+                <input type="text" class="form-control" id="categoryName" name="categoryName" aria-describedby="categoryName">
             </div>
 
             <button type="submit" class="btn btn-primary">Créer</button>

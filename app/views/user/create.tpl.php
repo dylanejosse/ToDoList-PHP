@@ -2,9 +2,9 @@
 
     <div class="p-3 col-6 m-auto">
 
-        <h3 class="mb-5">Création de votre compte</h3>
+        <h3 class="mb-3">Création de votre compte</h3>
 
-        <form>
+        <form method="POST">
             <div class="mb-3">
                 <label for="email" class="form-label">Adresse mail</label>
                 <input type="email" class="form-control" id="email" name="email" aria-describedby="email">
