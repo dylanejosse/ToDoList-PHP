@@ -67,13 +67,14 @@ class Category extends CoreModel {
     {
         $pdo = Database::getPDO();
         $securedSql = "
-        INSERT INTO `category` (name)
-        VALUES (:name)
+        INSERT INTO `category` (name, user_id)
+        VALUES (:name, :userId)
         ";
 
         $pdoStatement = $pdo->prepare($securedSql);
         $pdoStatement->execute([
-            "name" => $this->name
+            "name" => $this->name,
+            "userId" => $_SESSION["auth"]
         ]);
     }
 

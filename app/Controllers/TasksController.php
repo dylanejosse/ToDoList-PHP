@@ -7,6 +7,7 @@ use App\Utils\Database;
 
 require_once "CoreController.php";
 
+
 class TasksController extends CoreController {
 
     public function list($userId) {
@@ -16,18 +17,17 @@ class TasksController extends CoreController {
         $userList = User::findAll();
 
         // Fournir les données à la vue
-        $this->show("tasks/list", ["tasksList" => $tasksList, "categoryListByUser" => $categoryListByUser, 'userList' => $userList]);
+        if ($userId === $_SESSION["auth"]):
+            $this->show("tasks/list", ["tasksList" => $tasksList, "categoryListByUser" => $categoryListByUser, 'userList' => $userList]);
+        else:
+            $this->show("error/err403");
+        endif;
     }
 
-    public function addCategory(){
+    public function addDisplay($userId){
+        $categoryList = Category::findCategoryByUser($userId);
 
-        $this->show('tasks/addCategory');
-    }
-
-    public function addDisplay(){
-        $categoryList = Category::findAll();
-
-        $this->show('tasks/addTasks', ['categoryList' => $categoryList]);
+        $this->show('tasks/add', ['categoryList' => $categoryList]);
     }
 
     public function add(){
@@ -43,37 +43,14 @@ class TasksController extends CoreController {
         $task->insert();
 
         global $router;
-        header("Location: " . $router->generate("tasks-list"));
+        header("Location: " . $router->generate("tasks-list", ["userId" => $_SESSION["auth"]]));
     }
 
     public function remove($taskId){
        
         Tasks::delete($taskId);
         global $router;
-        header("Location: " . $router->generate("tasks-list"));
+        header("Location: " . $router->generate("tasks-list", ["userId" => $_SESSION["auth"]]));
 
-    }
-
-    public function insertCategory()
-    {
-        $newCategory = new Category();
-
-        $categoryName = filter_input(INPUT_POST, "categoryName");
-        $categoryDescription = filter_input(INPUT_POST, "categoryDescription");
-
-        $newCategory->setName($categoryName);
-        
-        $newCategory->insert();
-
-        global $router;
-        header("Location: " . $router->generate("tasks-list"));
-    }
-
-    public function removeCategory($categoryId)
-    {
-        Category::deleteCategory($categoryId);
-        Tasks::deleteTaskFromCategoryId($categoryId);
-        global $router;
-        header("Location: " . $router->generate("tasks-list"));
     }
 }

@@ -1,21 +1,26 @@
-<section style="height: 80vh">
+<section class="d-flex align-items-center m-auto col-10" style="height: 80vh">
 
-<div class="d-flex flex-wrap align-items-end justify-content-center m-auto" style="height: 25vh">
-  <h1>Votre ToDoList personnalisée</h1>
-  <p class="col-10 text-center">Notez toutes les tâches que vous souhaitez, triez les en fonctions de catégories customisées et augmentez votre productivité !</p>
-</div>
+<div class="w-100">
 
-<div class="d-flex justify-content-center align-items-center" style="height: 40vh">
-  <div class="d-flex justify-content-center align-items-center m-auto">
-    <img src="/images/taches.png" alt="TodoList" class="col-7">
+<div class="d-flex flex-wrap align-items-center justify-content-center m-auto text-center w-100">
+  <div>
+    <h1 class="w-100">Votre ToDoList personnalisée</h1>
+    <p class="w-100">Notez toutes les tâches que vous souhaitez, triez les en fonction de catégories customisées et augmentez votre productivité !</p>
   </div>
 </div>
 
-<div style="height: 12vh">
-   <div class="d-flex flex-wrap align-items-center justify-content-center col-9 h-100 m-auto">
-    <a class="w-100 btn btn-success" href="<?php global $router; echo $router->generate('user-login'); ?>" role="button">Me connecter</a>
-    <a class="w-100 btn btn-light" href="<?php global $router; echo $router->generate('user-create-account'); ?>" role="button">Créer un compte</a>
+<div class="w-100">
+   <div class="d-flex flex-wrap align-items-end justify-content-center h-100 m-auto">
+    <div class="col-lg-7 col-9 mb-3 text-center">
+      <a class="col-lg-4 btn btn-primary" href="<?php global $router; echo $router->generate('user-login'); ?>" role="button">Me connecter</a>
+    </div>
+
+    <div class="col-lg-7 col-9 text-center">
+      <a class="col-lg-4 btn btn-light" href="<?php global $router; echo $router->generate('user-create-account'); ?>" role="button">Créer un compte</a>
+    </div>
    </div> 
+</div>
+
 </div>
 
 </section>

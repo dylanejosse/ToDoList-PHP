@@ -16,6 +16,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Créer un compte</button>
+            <a type="button" class="btn btn-light mx-3" href="<?php global $router; echo $router->generate("user-login")?>">J'ai déjà un compte</a>
 
         </form>
 

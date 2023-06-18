@@ -9,11 +9,11 @@
   <div class="container d-flex flex-wrap justify-content-center align-items-center mt-3">
 
     <div class="add-category d-flex align-items-center justify-content-center col-6 col-lg-2 m-2">
-      <a href="<?php global $router; echo $router->generate('tasks-add-category'); ?>"><button style="button" class="btn btn-light text-center w-100 m-auto fs-7">Ajouter une catégorie</button></a>
+      <a href="<?php global $router; echo $router->generate('category-add'); ?>"><button style="button" class="btn btn-light text-center w-100 m-auto fs-7">Ajouter une catégorie</button></a>
     </div>
 
     <div class="add-task d-flex align-items-center justify-content-center col-6 col-lg-2 m-2">
-      <a href="<?php global $router; echo $router->generate('tasks-add'); ?>"><button style="button" class="btn btn-primary w-100 m-auto fs-7">Créer une nouvelle note</button></a>
+      <a href="<?php global $router; echo $router->generate('tasks-add', ['userId' => $_SESSION["auth"]]); ?>"><button style="button" class="btn btn-primary w-100 m-auto fs-7">Créer une nouvelle note</button></a>
     </div>
 
   </div>
@@ -53,7 +53,7 @@
                 <p class="accordion-header col-9 fs-5"><?= $currentTask->getName()?></p>
       
                 <div class="d-flex justify-content-end col-3">
-                  <a type="button" class="col-3 btn btn-success p-2 ms-3" href="<?php global $router; echo $router->generate("tasks-remove", ['taskId' => $currentTask->getId()]);?>">Terminer</a>
+                  <a type="button" class="col-1 btn btn-success p-2 ms-3" href="<?php global $router; echo $router->generate("tasks-remove", ['taskId' => $currentTask->getId()]);?>">V</a>
                 </div>
 
               </div>

@@ -4,6 +4,8 @@
 
   <div class="p-3 col-6 m-auto">
 
+  <!-- TODO : Afficher un message dans le cas ou mot de passe et identifiants incorrect -->
+
   <h3 class="mb-3">Connexion</h3>
 
     <form class="w-100 m-auto" method="POST">

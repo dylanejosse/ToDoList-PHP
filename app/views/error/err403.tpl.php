@@ -1,1 +1,13 @@
-<h1>Vous n'avez malheureusement pas accès à cette page, veuillez vous connecter ou créer un compte utilisateur _</h1>
+<div class="d-flex flex-wrap align-items-center justify-content-center" style="height: 80vh">
+
+    <div>
+    <div class="col-12 text-center mb-3">
+        <h1 class="col-lg-8 m-auto">403 - Accès non autorisé</h1>
+    </div>
+
+    <div class="text-center">
+        <a type="button" class="btn btn-primary" href="<?php global $router; echo $router->generate("main-home");?>">Retour à la page d'accueil</a>
+    </div>
+
+    </div>
+</div>

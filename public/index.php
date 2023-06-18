@@ -7,6 +7,7 @@ require_once __DIR__ . "/../app/Controllers/MainController.php";
 require_once __DIR__ . "/../app/Controllers/ErrorController.php";
 require_once __DIR__ . "/../app/Controllers/TasksController.php";
 require_once __DIR__ . "/../app/Controllers/UserController.php";
+require_once __DIR__ . "/../app/Controllers/CategoryController.php";
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
@@ -18,13 +19,14 @@ $router->map('GET', "/price", "MainController#price", "main-price");
 
 // Routes liées aux tasks
 $router->map('GET', "/tasks/[i:userId]", "TasksController#list", "tasks-list");
-$router->map('GET', "/add-category", "TasksController#addCategory", "tasks-add-category");
-$router->map('GET', "/add-tasks", "TasksController#addDisplay", "tasks-add");
-$router->map('POST', "/add-tasks", "TasksController#add", "tasks-insert");
+$router->map('GET', "/add-tasks/[i:userId]", "TasksController#addDisplay", "tasks-add");
+$router->map('POST', "/add-tasks/[i:userId]", "TasksController#add", "tasks-insert");
 $router->map('GET', "/tasks/remove/[i:taskId]", "TasksController#remove", "tasks-remove");
-$router->map('POST', "/add-category", "TasksController#insertCategory", "tasks-insert-category");
-$router->map('GET', "/category/remove/[i:categoryId]", "TasksController#removeCategory", "category-remove");
 
+// Routes liées aux catégories
+$router->map('GET', "/add-category", "CategoryController#addDisplay", "category-add");
+$router->map('POST', "/add-category", "CategoryController#insertCategory", "category-insert");
+$router->map('GET', "/category/remove/[i:categoryId]", "CategoryController#remove", "category-remove");
 
 // Routes liées aux erreurs
 $router->map('GET', "/error", "ErrorController#err404", "error-404");
@@ -39,5 +41,11 @@ $router->map('POST', "/create-account", "UserController#create", "user-create");
 $match = $router->match();
 
 $dispatcher = new Dispatcher($match, 'ErrorController::err404');
-$dispatcher->setControllersArguments($match['name']);
+
+if (!$match):
+    header("Location: " . $router->generate("error-404"));
+else:
+    $dispatcher->setControllersArguments($match['name']);
+endif;
+
 $dispatcher->dispatch();

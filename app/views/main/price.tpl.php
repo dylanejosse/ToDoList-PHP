@@ -73,16 +73,18 @@
       }
     </style>
 
+<div class="d-flex align-items-center" style="height:80vh">
+
 <div class="container py-3">
 
-  <header>
+  <header class="w-100">
     <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
       <h1 class="display-4 fw-normal text-body-emphasis">Prix</h1>
       <p class="fs-5 text-body-secondary">Fait pour vous, sans vous prendre 1 centime 🤷‍♂️</p>
     </div>
   </header>
 
-  <main>
+  <main class="w-100">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
       <div class="col mx-auto">
         <div class="card mb-4 rounded-3 shadow-sm">
@@ -100,5 +102,6 @@
             <a href="<?php global $router; echo $router->generate('user-create-account'); ?>"><button type="button" class="w-100 btn btn-lg btn-outline-primary">Inscriver-vous gratuitement</button></a>
           </div>
         </div>
+      </div>
       </div>
     </div>
